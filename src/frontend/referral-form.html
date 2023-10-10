@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referral Form</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        h1 {
+            margin-bottom: 60px;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        button[type="submit"] {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+    <body>
+
+    <div class="container mt-5">
+        <h1>Pediatric Tuberculosis Patient Information</h1>
+        <form>
+            <!-- Referring Details-->
+            <h2 class="mb-4">Referring Details</h2>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="caseNumber">TB/TPT Case Number</label>
+                    <input type="text" class="form-control" id="caseNumber" name="caseNumber" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="dateReferred">Date Referred</label>
+                    <input type="date" class="form-control" id="dateReferred">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="referringFacility">Name of Referring Facility/Unit</label>
+                    <input type="text" class="form-control" id="referringFacility">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="contactNumber">Contact Number</label>
+                    <input type="tel" class="form-control" id="contactNumber">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email">
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="address">Address of Referring Facility/Unit</label>
+                    <textarea class="form-control" id="address" rows="4"></textarea>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="dotsStaffName">Name of referring DOTS staff</label>
+                    <input type="text" class="form-control" id="dotsStaffName">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="dotsStaffContact">Contact Number/Email of DOTS staff</label>
+                    <input type="text" class="form-control" id="dotsStaffContact">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="designation">Designation of DOTS staff</label>
+                    <input type="text" class="form-control" id="designation">
+                </div>
+            </div>
+
+            <!-- Information of the Patient -->
+            <h2 class="mb-4 mt-5">Patient's Information</h2>
+
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="patientName">Full Name of Patient</label>
+                    <input type="text" class="form-control" id="patientName" name="patientName">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="patientAge">Age</label>
+                    <input type="number" class="form-control" id="patientAge" name="patientAge">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="patientSex">Sex</label>
+                    <select class="form-control" id="patientSex">
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                    </select>
+                  </div>      
+                <div class="form-group col-md-3">
+                    <label for="patientWeight">Weight (Kg)</label>
+                    <input type="number" class="form-control" id="patientWeight" name="patientWeight">
+                </div>              
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="patientAddress">Address of Patient</label>
+                    <textarea class="form-control" id="patientAddress" rows="4" name="patientAddress"></textarea>
+                </div>
+            </div>
+
+            <!-- Referral Reason section -->
+            <div class="form-group"> 
+                <label for="referralReason"><strong>Referral Reason:</strong></label>
+                <select class="form-control" id="referralReason" onchange="showReasonDetails(this.value)">
+                    <option value="">-- Select a reason --</option>
+                    <option value="generalScreening">General TB Screening</option>
+                    <option value="highRiskClinical">Identified as High-Risk Clinical Group</option>
+                    <option value="highRiskPopulation">Identified as High-Risk Population</option>
+                    <option value="otherRiskFactors">Other Identified Risk Factors</option>
+                    <option value="confirmedCsase">Contact of a confirmed DS/DR-TB case</option>
+                    <option value="previousTreatment">Previous TB Treatment (Retreatment)</option>
+                    <option value="initiationTB">Initiation of TB treatment</option>
+                    <option value="initiationTPT">Initiation of TPT (Tuberculosis Preventive Treatment)</option>
+                    <option value="continuationAfterTransfer">Continuation of TB treatment after transfer</option>
+                    <option value="decentralization">Decentralization and continuation of TB treatment</option>
+                    <option value="otherReasons">Other reasons</option>
+                </select>
+
+                <div id="otherReasonsDetails" style="display: none;">
+                    <input type="text" class="form-control mt-2" placeholder="Please specify the other reason">
+                </div>
+            </div>
+          
+
+            <!-- Patient's Medical Information Section -->
+            <h2 class="mb-4 mt-5">Patient's Medical Information</h2>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="bacteriologicalStatus">Bacteriological Status</label>
+                    <select class="form-control" id="bacteriologicalStatus">
+                        <option selected>Choose...</option>
+                        <option value="BC">BC</option>
+                        <option value="CD">CD</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="anatomicalSite">Anatomical Site</label>
+                    <select class="form-control" id="anatomicalSite">
+                        <option selected>Choose...</option>
+                        <option value="P">P</option>
+                        <option value="EP">EP</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="drugSusceptibility">Drug-susceptibility</label>
+                    <select class="form-control" id="drugSusceptibility">
+                        <option selected>Choose...</option>
+                        <option value="DS">DS</option>
+                        <option value="DR">DR</option>
+                        <option value="Unknown">Unknown</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="treatmentHistory">Treatment History</label>
+                    <select class="form-control" id="treatmentHistory">
+                        <option selected>Choose...</option>
+                        <option value="New">New</option>
+                        <option value="Retreatment">Retreatment</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Receiving Details Section -->
+            <h2 class="mb-4 mt-5">Receiving Details</h2>
+
+
+                    <!-- Referring Unit Details -->
+                    <div class="form-row mb-3">
+                        <div class="form-group col-md-6">
+                            <label for="referringUnitName">Name of Referring Unit</label>
+                            <input type="text" class="form-control" id="referringUnitName" placeholder="Enter referring unit name">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="referringUnitAddress">Address of Referring Unit</label>
+                            <textarea class="form-control" id="referringUnitAddress" rows="2" placeholder="Enter address"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Receiving Unit Details -->
+                    <div class="form-row mb-3">
+                        <div class="form-group col-md-4">
+                            <label for="receivingUnitName">Name of Receiving Unit</label>
+                            <input type="text" class="form-control" id="receivingUnitName" placeholder="Enter receiving unit name">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="dateReceived">Date Received</label>
+                            <input type="date" class="form-control" id="dateReceived">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="receivingUnitContact">Contact Number of Receiving Unit</label>
+                            <input type="tel" class="form-control" id="receivingUnitContact" placeholder="Enter contact number">
+                        </div>
+                    </div>
+
+                    <!-- Full Address of Receiving Unit -->
+                    <div class="form-row mb-3">
+                        <div class="form-group col-md-12">
+                            <label for="receivingUnitAddress">Full Address of Receiving Unit</label>
+                            <textarea class="form-control" id="receivingUnitAddress" rows="3" placeholder="Enter full address"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- DOTS Staff Details -->
+                    <div class="form-row mb-3">
+                        <div class="form-group col-md-4">
+                            <label for="dotsStaffNameReceive">Name of Receiving DOTS staff</label>
+                            <input type="text" class="form-control" id="dotsStaffNameReceive" placeholder="Enter DOTS staff name">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="dotsStaffContactReceive">Contact Number/Email of DOTS staff</label>
+                            <input type="text" class="form-control" id="dotsStaffContactReceive" placeholder="Enter contact or email">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="designationReceive">Designation of DOTS staff</label>
+                            <input type="text" class="form-control" id="designationReceive" placeholder="Enter designation">
+                        </div>
+            </div>
+
+            <!-- Lab Information and Actions Taken -->
+                    <div class="form-row mb-3">
+                        <div class="form-group col-md-6">
+                            <label for="labTestType">Lab Test Type Performed</label>
+                            <input type="text" class="form-control" id="labTestType" placeholder="Enter lab test type">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="dateOfLabTest">Date of Lab Test</label>
+                            <input type="date" class="form-control" id="dateOfLabTest">
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="results">Results</label>
+                        <textarea class="form-control" id="results" rows="3" placeholder="Enter results"></textarea>
+                    </div>
+
+
+                <!-- Actions Taken Section -->
+                <h5 class="mb-3">Actions Taken</h5>
+
+                <!-- Primary Action Dropdown -->
+                <div class="form-group">
+                    <label for="actionTaken">Action Taken:</label>
+                    <select class="form-control" id="actionTaken" onchange="showActionDetails(this.value)">
+                        <option value="">-- Select an Action --</option>
+                        <option value="startedTreatment">Patient started/resumed treatment</option>
+                        <option value="notTreated">Not treated</option>
+                        <option value="others">Others</option>
+                    </select>
+                </div>
+
+                <!-- Conditional Fields -->
+
+                <!-- Fields for 'Patient started/resumed treatment' -->
+                <div id="startedTreatmentDetails" style="display:none;">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="dateRegistered">Date registered/resumed:</label>
+                            <input type="date" class="form-control" id="dateRegistered">
+                        </div>
+                        
+                        <div class="form-group col-md-6">
+                            <label for="regimenDetails">Regimen details:</label>
+                            <input type="text" class="form-control" id="regimenDetails">
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Fields for 'Not treated' -->
+                <div id="notTreatedDetails" style="display:none;">
+                    <div class="form-group">
+                        <label for="notTreatedReason">Specify reasons for not treating:</label>
+                        <textarea class="form-control" id="notTreatedReason" rows="3"></textarea>
+                    </div>
+                </div>
+
+                <!-- Fields for 'Others' -->
+                <div id="othersDetails" style="display:none;">
+                    <div class="form-group">
+                        <label for="otherActionsDetail">Specify other actions taken:</label>
+                        <textarea class="form-control" id="otherActionsDetail" rows="3"></textarea>
+                    </div>
+                </div>
+
+
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+        </form>
+    </div>
+    <!-- Firebase JS SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>    
+
+    <!-- Your script -->
+    <script src="../backend/referral-form.js"></script>
+
+        
+        <!-- Script to Toggle Display of Conditional Fields -->
+        <script>
+            function showActionDetails(action) {
+                // Hide all detail sections first
+                document.getElementById("startedTreatmentDetails").style.display = 'none';
+                document.getElementById("notTreatedDetails").style.display = 'none';
+                document.getElementById("othersDetails").style.display = 'none';
+            
+                // Display the chosen section
+                if(action) {
+                    document.getElementById(action + "Details").style.display = 'block';
+                }
+            }
+            </script>
+
+
+        <script>
+            function showReasonDetails(reason) {
+                // Initially hide the 'Other reasons' detail section
+                document.getElementById("otherReasonsDetails").style.display = 'none';
+            
+                // If 'Other reasons' is selected, show its details
+                if(reason === 'otherReasons') {
+                    document.getElementById("otherReasonsDetails").style.display = 'block';
+                }
+            }
+        </script>
+
+    </body>
+</html>
