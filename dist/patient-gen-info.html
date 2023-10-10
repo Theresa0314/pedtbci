@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient General Information</title>
+    <!-- Add your CSS link here for styling -->
+</head>
+<body>
+    <h1>Patient General Information</h1>
+    <form id="patientInfoForm">
+        <!-- Personal Information -->
+        <h2>Personal Information</h2>
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" name="fullName" required><br>
+        
+        <label for="alias">Alias:</label>
+        <input type="text" id="alias" name="alias"><br>
+        
+        <label for="birthdate">Birthdate (MM-DD-YYYY):</label>
+        <input type="text" id="birthdate" name="birthdate" pattern="\d{2}-\d{2}-\d{4}" placeholder="MM-DD-YYYY" required><br>
+        
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required><br>
+        
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select><br>
+        
+        <!-- Contact Information -->
+        <h2>Contact Information</h2>
+        <label for="contactNumber">Contact Number:</label>
+        <input type="tel" id="contactNumber" name="contactNumber" required><br>
+        
+        <label for="isContactNumberOwner">Is the Patient the Owner of the Contact Number?</label>
+        <input type="radio" id="isContactNumberOwnerYes" name="isContactNumberOwner" value="yes" required>
+        <label for="isContactNumberOwnerYes">Yes</label>
+        <input type="radio" id="isContactNumberOwnerNo" name="isContactNumberOwner" value="no">
+        <label for="isContactNumberOwnerNo">No</label><br>
+        
+        <!-- Emergency Contact -->
+        <h2>Emergency Contact</h2>
+        <label for="emergencyContactPerson">Emergency Contact Person:</label>
+        <input type="text" id="emergencyContactPerson" name="emergencyContactPerson" required><br>
+        
+        <label for="emergencyContactNumber">Emergency Contact Number:</label>
+        <input type="tel" id="emergencyContactNumber" name="emergencyContactNumber" required><br>
+        
+        <label for="relationship">Relationship:</label>
+        <input type="text" id="relationship" name="relationship" required><br>
+        
+        <!-- Other Information -->
+        <h2>Other Information</h2>
+        <!-- Add more fields for other information as needed -->
+
+        <!-- Submit Button -->
+        <input type="submit" value="Submit">
+    </form>
+    <!-- Add your JavaScript for validation and interactivity -->
+</body>
+</html>
